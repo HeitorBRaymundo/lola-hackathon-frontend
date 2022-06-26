@@ -21,6 +21,8 @@ import { LayoutContent } from '../../components/Layout/Layout';
 import styled from 'styled-components';
 import ReactSpeedometer, { CustomSegmentLabelPosition } from 'react-d3-speedometer';
 
+import foto from './foto.jpeg';
+
 ChartJS.register(
   RadialLinearScale,
   PointElement,
@@ -84,7 +86,7 @@ const Home: React.FC = () => {
               <Card>
                 <AvatarCardContent>
                   <Row>
-                    <Avatar sx={{ bgcolor: deepOrange[500] }}> MS </Avatar>
+                    <Avatar sx={{ bgcolor: deepOrange[500] }} src={foto}> MS </Avatar>
                     <NameSection>
                       <p>
                         <strong>Melinda Silva</strong> <br />
