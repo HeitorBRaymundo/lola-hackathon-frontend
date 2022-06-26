@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { 
@@ -8,6 +9,8 @@ import {
 } from '@mui/material';
 
 import { LayoutContent } from '../../components/Layout/Layout';
+import axios from 'axios';
+import { BASE_URL } from '../../constant';
 
 const CustomCard = styled(Card)`
   margin-right: 16px;
@@ -29,6 +32,15 @@ const Question = styled(TextField)`
 
 const MentalHealth: React.FC = () => {
 
+  const [reports, setReports] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${BASE_URL}/reports/1`)
+      .then(({ data }) => {
+        setReports(data.result.map((r: any, i: number) => ({ key: i, ...r })))
+      });
+  }, []);
+
   const questions = [
     'Você está satisfeito com a vida?',
     'Você se aborréce facilmente?',
@@ -36,35 +48,6 @@ const MentalHealth: React.FC = () => {
     'Você prefere ficar em casa ao invés de sair e fazer coisas diferentes?',
     'Atualmente você se sente inútil?',
   ];
-
-  const answersReport = [{
-    date: '24/05/2022',
-    anwsers: [
-      'Sim',
-      'Não',
-      'Sim',
-      'Sim',
-      'Não'
-    ]
-  }, {
-    date: '24/05/2022',
-    anwsers: [
-      'Sim',
-      'Não',
-      'Sim',
-      'Sim',
-      'Não'
-    ]
-  }, {
-    date: '24/05/2022',
-    anwsers: [
-      'Sim',
-      'Não',
-      'Sim',
-      'Sim',
-      'Não'
-    ]
-  }];
 
   return (
     <LayoutContent>
@@ -82,15 +65,15 @@ const MentalHealth: React.FC = () => {
           </CardContent>
         </CustomCard>
 
-        {answersReport.map((report) => {
+        {reports.map((report: any, i: number) => {
           return (
-            <CustomCard>
+            <CustomCard key={i}>
               <CardContent>
                 <h2>Respostas de {report.date}</h2>
                 <Questions>
-                  {report.anwsers.map((answer, i) => {
+                  {report.answers.map((answer: any, i: number) => {
                     return (
-                      <Question id="outlined-basic" label={`Pergunta ${i + 1}`} variant="outlined" value={answer} disabled/>
+                      <Question key={i} id="outlined-basic" label={`Pergunta ${i + 1}`} variant="outlined" value={answer} disabled/>
                     )
                   })}
                 </Questions>
