@@ -54,7 +54,7 @@ const MentalHealth: React.FC = () => {
       <Section>
         <CustomCard>
           <CardContent>
-            <h2>Check-up saúde mental (depressão)</h2>
+            <h2>Teste de escala de Depressão Geriátrica</h2>
             <Questions>
               {questions.map((question, i) => {
                 return (
