@@ -18,7 +18,6 @@ export const Sidebar: React.FC = () => {
         <MenuItem onClick={() => navigate('/')}>Dashboard</MenuItem>
         <MenuItem onClick={() => navigate('/saude-mental')}>Saúde mental</MenuItem>
         <MenuItem onClick={() => navigate('/consultas')}>Consultas</MenuItem>
-        <MenuItem onClick={() => navigate('/lembretes')}>Lembretes</MenuItem>
         <MenuItem onClick={() => navigate('/medicamentos')}>Controle de medicamentos</MenuItem>
       </MenuList>
     </SidebarMenu>
