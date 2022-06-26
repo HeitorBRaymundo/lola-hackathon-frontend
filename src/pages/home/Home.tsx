@@ -19,6 +19,7 @@ import { Radar } from 'react-chartjs-2';
 
 import { LayoutContent } from '../../components/Layout/Layout';
 import styled from 'styled-components';
+import ReactSpeedometer, { CustomSegmentLabelPosition } from 'react-d3-speedometer';
 
 ChartJS.register(
   RadialLinearScale,
@@ -35,6 +36,9 @@ const AvatarCardContent = styled(CardContent)`
 `;
 
 const IFLCard = styled(CardContent)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Row = styled.div`
@@ -43,11 +47,6 @@ const Row = styled.div`
   align-items: center;
 `;
 
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 const NameSection = styled.div`
   display: flex;
@@ -60,9 +59,16 @@ const Home: React.FC = () => {
     labels: ['Alimentação', 'Exercícios', 'Entretenimento', 'Saúde mental', 'Sono', 'Hidratação'],
     datasets: [
       {
+        label: 'Média indicada',
+        data: [5, 5, 5, 5, 5, 5],
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 2,
+      },
+      {
         label: 'Nr de registros no último mês',
-        data: [4, 3, 4, 1, 3, 6],
-        backgroundColor: 'rgba(136 199 183, .4)',
+        data: [4, 3, 4, 2, 3, 6],
+        backgroundColor: 'rgba(136 199 183, .1)',
         borderColor: 'rgb(136 199 183)',
         borderWidth: 1,
       },
@@ -136,16 +142,40 @@ const Home: React.FC = () => {
             <Grid item xs={12}>
               <Card>
                 <IFLCard>
-                  <Grid container spacing={2}>
-                    <Grid item xs={3}>
-                      <Column>
-                        <h2>I.F.L</h2>
-                        <h3>76</h3>
-                      </Column>
-                    </Grid>
-                    <Grid item xs={9}>
-                    </Grid>
-                  </Grid>
+                  <ReactSpeedometer
+                    maxValue={100}
+                    value={53}
+                    currentValueText="I.F.L"
+                    height={200}
+                    customSegmentLabels={[
+                      {
+                        text: "Muito mal",
+                        position: CustomSegmentLabelPosition.Inside,
+                        color: "#555",
+                      },
+                      {
+                        text: "Mal",
+                        position: CustomSegmentLabelPosition.Inside,
+                        color: "#555",
+                      },
+                      {
+                        text: "Razoável",
+                        position: CustomSegmentLabelPosition.Inside,
+                        color: "#555",
+                        fontSize: "19px",
+                      },
+                      {
+                        text: "Bom",
+                        position: CustomSegmentLabelPosition.Inside,
+                        color: "#555",
+                      },
+                      {
+                        text: "Muito bom",
+                        position: CustomSegmentLabelPosition.Inside,
+                        color: "#555",
+                      },
+                    ]}
+                  />
                 </IFLCard>
               </Card>
             </Grid>
